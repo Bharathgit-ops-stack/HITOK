@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, url_for, session
 import os
 from werkzeug.utils import secure_filename
@@ -10,8 +11,10 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 users = {}
 videos = []
 
-@app.route('/')
+@app.route('/', methods=['GET', 'HEAD'])
 def home():
+    if request.method == 'HEAD':
+        return '', 200
     if 'username' in session:
         return redirect(url_for('feed'))
     return render_template('home.html')
@@ -66,4 +69,4 @@ def feed():
 if __name__ == '__main__':
     if not os.path.exists('static/uploads'):
         os.makedirs('static/uploads')
-    app.run(debug=False)
+    app.run(debug=True)

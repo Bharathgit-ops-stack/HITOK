@@ -1,0 +1,9 @@
+<h2>HeyTok Feed</h2>
+<a href="/upload">Upload Video</a> | <a href="/logout">Logout</a>
+{% for video in videos %}
+  <h4>{{ video.username }} uploaded:</h4>
+  <video width="320" height="240" controls>
+    <source src="{{ url_for('static', filename='uploads/' + video.filename) }}" type="video/mp4">
+  </video>
+  <hr>
+{% endfor %}

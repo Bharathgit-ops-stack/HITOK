@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.secret_key = 'heytok_secret_key'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
-# In-memory user and video storage
 users = {}
 videos = []
 
@@ -69,4 +68,4 @@ def feed():
 if __name__ == '__main__':
     if not os.path.exists('static/uploads'):
         os.makedirs('static/uploads')
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0', port=10000)
